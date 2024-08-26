@@ -1,0 +1,307 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+::selection {
+  color: #ffffff;
+  background: #0786b5;
+}
+
+body {
+  background: #282a36;
+  color: #f8f8f2;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.select-box, .play-board, .result-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+}
+
+.select-box {
+  background: #44475a;
+  padding: 25px 30px;
+  border-radius: 16px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.select-box.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.select-box header {
+  font-size: 40px;
+  font-weight: 700;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #6272a4;
+  color: #0786b5;
+}
+
+.select-box .title {
+  font-size: 28px;
+  font-weight: 500;
+  margin: 20px 0;
+  color: #f8f8f2;
+}
+
+.select-box .options {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.options button {
+  font-size: 26px;
+  font-weight: 600;
+  padding: 15px 25px;
+  border: none;
+  background: #0786b5;
+  border-radius: 10px;
+  color: #282a36;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.options button:hover {
+  background: #8be9fd;
+  transform: translateY(-2px);
+}
+
+.options button.playerX {
+  margin-right: 10px;
+}
+
+.options button.playerO {
+  margin-left: 10px;
+}
+
+.select-box .difficulty {
+  margin-top: 15px;
+  color: #f8f8f2;
+}
+
+.select-box .difficulty select {
+  padding: 10px;
+  border: 2px solid #0786b5;
+  border-radius: 10px;
+  background: #44475a;
+  color: #f8f8f2;
+  font-size: 16px;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.select-box .difficulty select:hover {
+  background: #6272a4;
+}
+
+.select-box .player-names {
+  margin-top: 15px;
+}
+
+.select-box .player-names input {
+  width: calc(50% - 10px);
+  padding: 10px;
+  border: 2px solid #0786b5;
+  border-radius: 10px;
+  background: #44475a;
+  color: #f8f8f2;
+  font-size: 16px;
+  margin: 0 5px;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.select-box .player-names input::placeholder {
+  color: #888;
+}
+
+.select-box .player-names input:focus {
+  background: #6272a4;
+  border-color: #8be9fd;
+}
+
+.select-box .credit {
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.select-box .credit a {
+  color: #0786b5;
+  text-decoration: none;
+}
+
+.select-box .credit a:hover {
+  text-decoration: underline;
+}
+
+.play-board {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.play-board.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.play-board .details {
+  padding: 20px;
+  border-radius: 16px;
+  background: #44475a;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.play-board .players {
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.players span {
+  position: relative;
+  z-index: 2;
+  color: #040605;
+  font-size: 26px;
+  font-weight: 600;
+  padding: 12px 0;
+  width: 50%;
+  text-align: center;
+  cursor: default;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+.players.active span:first-child {
+  color: #f8f8f2;
+}
+
+.players.active span:last-child {
+  color: #0786b5;
+}
+
+.players span:first-child {
+  color: #f8f8f2;
+}
+
+.players .slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: #03b4cb;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.players.active .slider {
+  left: 50%;
+}
+
+.play-area {
+  margin-top: 20px;
+}
+
+.play-area section {
+  display: flex;
+  margin-bottom: 2px;
+}
+
+.play-area section span {
+  display: block;
+  height: 120px;
+  width: 120px;
+  margin: 2px;
+  color: #282a36;
+  font-size: 60px;
+  line-height: 120px;
+  text-align: center;
+  border-radius: 12px;
+  background: #f8f8f2;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.play-area section span:hover {
+  background: #6b6c6b;
+  color: #282a36;
+  transform: scale(1.05);
+}
+
+.result-box {
+  padding: 30px 20px;
+  border-radius: 16px;
+  max-width: 480px;
+  width: 100%;
+  opacity: 0;
+  text-align: center;
+  background: #44475a;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.result-box.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.result-box .won-text {
+  font-size: 40px;
+  font-weight: 700;
+  color: #0786b5;
+  display: flex;
+  justify-content: center;
+}
+
+.result-box .won-text p {
+  font-weight: 700;
+  margin: 0 5px;
+}
+
+.result-box .btn {
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn button {
+  font-size: 24px;
+  font-weight: 600;
+  padding: 12px 28px;
+  border: none;
+  background: #0786b5;
+  border-radius: 10px;
+  color: #282a36;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn button:hover {
+  background: #8be9fd;
+  transform: translateY(-2px);
+}
